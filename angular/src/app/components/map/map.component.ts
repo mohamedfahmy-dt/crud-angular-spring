@@ -10,9 +10,6 @@ export class MapComponent implements OnInit {
   latitude = 33.9715904;
   longitude = -6.8498129;
   locationChosen = false;
-
-
-
   constructor() { }
 
   ngOnInit(): void {
