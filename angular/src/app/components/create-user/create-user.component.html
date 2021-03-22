@@ -1,27 +1,32 @@
 <h3>Create User</h3>
-<div [hidden]="submitted" style="width: 400px;">
-  <!-- <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" required [(ngModel)]="user.name" name="name">
-    </div>
 
+<form [formGroup]="userForm">
 
-    <button type="submit" class="btn btn-success">Submit</button>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput type="text" placeholder="Your name" formControlName="name">
+  </mat-form-field>
+  <br>
 
-  </form> -->
-  <form (ngSubmit)="onSubmit()">
-    <mat-form-field class="form-group">
-      <mat-label>Name</mat-label>
-      <input matInput type="text" placeholder="Your name" id="name" [(ngModel)]="user.name" name="name">
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label>Latitude</mat-label>
+    <input matInput type="text" placeholder="Latitude" formControlName="latitude">
+  </mat-form-field>
+  <br>
 
+  <mat-form-field>
+    <mat-label>Longitude</mat-label>
+    <input matInput type="text" placeholder="Longitude" formControlName="longitude">
+  </mat-form-field>
 
-  </form>
-  <button type="submit" mat-raised-button color="primary">Submit</button>
-</div>
+  <br><button type="submit" mat-raised-button [disabled]="userForm.invalid" color="primary"
+    (click)="submit(userForm.value)">Submit</button>
 
-<div [hidden]="!submitted">
-  <h4>You submitted successfully!</h4>
-  <!-- <button class="btn btn-success" (click)="newUser()">Add</button> -->
-</div>
+</form>
+
+{{userForm.value | json}}
+<!-- </div> -->
+
+<mat-card>
+  <app-map [eventToParent]="eventFromMap"></app-map>
+</mat-card>

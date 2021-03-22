@@ -1,9 +1,7 @@
-import { Observable } from "rxjs";
 import { UserService } from "src/app/services/user.service";
-import { User } from "src/app/model/user";
-import { Component, OnInit } from "@angular/core";
+import { User } from "src/app/model/user.model";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from '@angular/router';
-import { MatTableDataSource } from "@angular/material/table";
 
 
 
@@ -13,26 +11,25 @@ import { MatTableDataSource } from "@angular/material/table";
   styleUrls: ["./users-list.component.scss"]
 })
 export class UsersListComponent implements OnInit {
-  users: Observable<User[]>;
-  // ELEMENT_DATA: User[];
-  // displayedColumns: string[] = ['id', 'name'];
-  // dataSource = new MatTableDataSource<User>(this.ELEMENT_DATA);
+  users: User[];
+  displayedColumns: string[] = ['id', 'name', 'latitude', 'longitude', 'option'];
+  dataSource: User[] = [];
 
 
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    // this.AllUsers();
-    this.reloadData();
+    this.getUsers();
+
   }
 
-  // AllUsers() {
-  //   let response = this.service.getAllUsers();
-  //   response.subscribe(report => this.dataSource.data = report as User[]);
-  // }
 
-  reloadData() {
-    this.users = this.userService.getUsersList();
+
+  private getUsers() {
+    this.userService.getUserList().subscribe(data => {
+      this.dataSource = data;
+      console.log(data);
+    });
   }
 
 
@@ -41,7 +38,7 @@ export class UsersListComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.reloadData();
+          this.getUsers();
         },
         error => console.log(error));
   }
@@ -49,8 +46,6 @@ export class UsersListComponent implements OnInit {
   updateUser(id: number) {
     this.router.navigate(['update', id])
   }
-
-
-
-
 }
+
+

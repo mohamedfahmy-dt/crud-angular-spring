@@ -53,6 +53,8 @@ public class UserController {
         .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
 
     user.setName(userDetails.getName());
+    user.setLatitude(userDetails.getLatitude());
+    user.setLongitude(userDetails.getLongitude());
     final User updatedUser = userRepository.save(user);
     return ResponseEntity.ok(updatedUser);
   }

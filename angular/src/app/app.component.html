@@ -1,32 +1,20 @@
-<!-- <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a routerLink="users" class="nav-link" routerLinkActive="active">Users' List</a>
-    </li>
-    <li class="nav-item">
-      <a routerLink="add" class="nav-link" routerLinkActive="active">Add User</a>
-    </li>
-  </ul>
-</nav> -->
-
-<mat-toolbar color="basic">
-  <a routerLink="users" routerLinkActive="active" mat-raised-button color="primary">User List</a>
-  <a routerLink="add" routerLinkActive="active" mat-raised-button color="primary">Add User</a>
-  <a routerLink="map" routerLinkActive="active" mat-raised-button color="primary">Map</a>
-</mat-toolbar>
+<mat-card>
+  <mat-toolbar class="toolbar" color="basic">
+    <a class="tool" routerLink="users" routerLinkActive="active" mat-raised-button color="primary">User List</a>
+    <a class="tool" routerLink="add" routerLinkActive="active" mat-raised-button color="primary">Add User</a>
+  </mat-toolbar>
+</mat-card>
 
 
 
 
 
-
-<div style="padding: 30 px;">
-  <br>
-  <h2 style="text-align: center;">{{title}}</h2>
-  <hr>
-  <div>
+<mat-card>
+  <div style="padding: 30 px;">
     <div>
-      <router-outlet></router-outlet>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
-</div>
+</mat-card>

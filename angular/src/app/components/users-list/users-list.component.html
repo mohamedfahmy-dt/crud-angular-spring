@@ -1,44 +1,39 @@
-<!-- <div class="panel panel-primary">
-  <div class="panel-heading">
-    <h2>Users List</h2>
-  </div>
-  <div class="panel-body">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users | async">
-          <td>{{user.name}}</td>
-          <td>
-            <button (click)="deleteUser(user.id)" mat-raised-button color="warn">Delete</button>
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.id}} </mat-cell>
+  </ng-container>
 
-          </td>
-        </tr>
-      </tbody>
-    </table> -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.name}} </mat-cell>
+  </ng-container>
 
-<div>
-  <h2 style="text-align: center;">User List</h2>
-  <app-data-table></app-data-table>
-</div>
+  <ng-container matColumnDef="latitude">
+    <mat-header-cell *matHeaderCellDef> Latitude </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.latitude}} </mat-cell>
+  </ng-container>
 
+  <ng-container matColumnDef="longitude">
+    <mat-header-cell *matHeaderCellDef> Longitude </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.longitude}} </mat-cell>
+  </ng-container>
 
+  <ng-container matColumnDef="option" style="flex-direction:row-reverse">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let user">
+      <div class="button-row">
+        <button mat-icon-button color="primary" (click)="updateUser(user.id)">
+          <mat-icon>create</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteUser(user.id)">
+          <mat-icon>delete_sweep</mat-icon>
+        </button>
+      </div>
+    </mat-cell>
 
+  </ng-container>
 
-<!-- <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table> -->
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
